@@ -1,7 +1,7 @@
 import './App.css'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
-
+import { Outlet } from 'react-router-dom'
 function App() {
 
   return (
@@ -9,8 +9,8 @@ function App() {
       <Navbar />
       <main className='flex h-[calc(100vh-50px-1rem)]'>
         <Sidebar />
-        <div className=' bg-white'>
-
+        <div className='  w-[calc(100vw-200px)] h-[calc(100vh-50px-1rem)]'>
+            <Outlet />
         </div>
       </main>
     </>

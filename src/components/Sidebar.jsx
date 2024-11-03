@@ -1,20 +1,20 @@
 import React from "react";
-
+import { NavLink } from "react-router-dom";
 const Sidebar = () => {
   return (
     <aside className="  flex flex-col gap-4 mt-4 h-full w-fit border-r-2 border-[#263350]">
-      <div className="pr-2 flex gap-4 min-w-[200px]">
+      <NavLink to={'/'} className={({ isActive }) =>`${isActive ? 'bg-[#15803d] rounded-tr-xl rounded-br-xl' : ''} p-[10px] flex gap-4 min-w-[200px] hover:bg-[#15803d] rounded-tr-xl rounded-br-xl`}>
         <span class="material-symbols-outlined">home</span>
         <p>Home</p>
-      </div>
-      <div className="pr-2 flex gap-4 min-w-[200px]">
+      </NavLink >
+      <NavLink to={'/archive'} className={({ isActive }) =>`${isActive ? 'bg-[#15803d] rounded-tr-xl rounded-br-xl' : ''} p-[10px] flex gap-4 min-w-[200px] hover:bg-[#15803d] rounded-tr-xl rounded-br-xl`}>
         <span class="material-symbols-outlined">archive</span>
         <p>Archive</p>
-      </div>
-      <div className="pr-2 flex gap-4 min-w-[200px]">
+      </NavLink>
+      <NavLink to={'/bin'} className={({ isActive }) =>`${isActive ? 'bg-[#15803d] rounded-tr-xl rounded-br-xl' : ''} p-[10px] flex gap-4 min-w-[200px] hover:bg-[#15803d] rounded-tr-xl rounded-br-xl`}>
         <span class="material-symbols-outlined">delete</span>
         <p>Bin</p>
-      </div>
+      </NavLink>
     </aside>
   );
 };
