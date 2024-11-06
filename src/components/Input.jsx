@@ -1,5 +1,5 @@
 import React from "react";
-import { useNotes } from '../context/Context'
+import { memo } from "react";
 const Input = ({title , text , dispatch}) => {
   
   return (
@@ -11,7 +11,7 @@ const Input = ({title , text , dispatch}) => {
           className=" p-2 text-[#111827] min-h-[30px] rounded-tr-lg rounded-tl-lg border-b-[1px]"
           type="text"
           placeholder="Enter your title"
-          required
+          required={true}
           value={title}
           onChange={(e) => dispatch({ type: "TITLE", payload: e.target.value })}
         />
@@ -20,16 +20,16 @@ const Input = ({title , text , dispatch}) => {
           id="notesText"
           className="text-[#111827] p-2 min-h-[120px] rounded-br-lg rounded-bl-lg "
           placeholder="Enter your notes"
-          required
+          required={true}
           style={{ resize: 'none' }}
           value={text}
           onChange={(e) => dispatch({ type: "TEXT", payload: e.target.value })}
         ></textarea>
 
-        <button onClick={(e)=> {e.preventDefault(); dispatch({type: 'AddNotes'})} } className=" absolute h-[40px] w-[40px] bottom-[1rem] right-[1rem] rounded-[100%] z-[10] bg-[#15803d]">+</button>
+        <button onClick={(e)=> {e.preventDefault(); (text.length > 0 && title.length > 0) && dispatch({type: 'AddNotes'})} } className=" absolute h-[40px] w-[40px] bottom-[1rem] right-[1rem] rounded-[100%] z-[10] bg-[#15803d]">+</button>
       </form>
     </>
   );
 };
 
-export default Input;
+export default memo(Input);

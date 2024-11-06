@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 const Sidebar = () => {
+  console.log('sidebar re-rendered');
   return (
     <aside className="  flex flex-col gap-4 mt-4 h-full w-fit border-r-2 border-[#263350]">
       <NavLink to={'/'} className={({ isActive }) =>`${isActive ? 'bg-[#15803d] rounded-tr-xl rounded-br-xl' : ''} p-[10px] flex gap-4 min-w-[200px] hover:bg-[#15803d] rounded-tr-xl rounded-br-xl`}>
