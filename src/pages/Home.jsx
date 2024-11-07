@@ -5,7 +5,6 @@ import Note from "../components/Note";
 
 const Home = () => {
   const { notes, dispatch } = useNotes();
-  console.log("home re-rendered");
   const pinnedNotes = useMemo(
     () => notes.filter((note) => note.isPinned && !note.isArchived),
     [notes]

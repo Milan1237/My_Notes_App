@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from "react";
 import { useNotes } from "../context/Context";
 
-const Note = ({ title, isPinned, id, text, pageType , isArchived }) => {
+const Note = ({ title, isPinned, id, text, pageType, isArchived }) => {
   const { dispatch } = useNotes();
   const setPin = useCallback(
     () => dispatch({ type: "SetPin", payload: id }),
@@ -11,8 +11,16 @@ const Note = ({ title, isPinned, id, text, pageType , isArchived }) => {
     () => dispatch({ type: "AddToBin", payload: id }),
     [dispatch]
   );
+  const removeFromBin = useCallback(
+    () => dispatch({ type: "RemoveFromBin", payload: id }),
+    [dispatch]
+  );
   const handleArchive = useCallback(
     () => dispatch({ type: "SetArchive", payload: id }),
+    [dispatch]
+  );
+  const handleRestore = useCallback(
+    () => dispatch({ type: "Restore", payload: id }),
     [dispatch]
   );
   return (
@@ -42,15 +50,34 @@ const Note = ({ title, isPinned, id, text, pageType , isArchived }) => {
       </p>
       <div className="flex justify-end gap-2">
         <button>
-          <span className="material-icons-outlined" onClick={addToBin}>
+          <span
+            className="material-icons-outlined"
+            onClick={() =>
+              pageType === "delete" ? removeFromBin() : addToBin()
+            }
+          >
             delete
           </span>
         </button>
-        <button>
-          <span className={isArchived ? `material-icons` : 'material-icons-outlined' } onClick={handleArchive}>
-            archive
-          </span>
-        </button>
+
+        {pageType === "delete" ? (
+          <button>
+            <span className="material-icons-outlined" onClick={handleRestore}>
+              restore
+            </span>
+          </button>
+        ) : (
+          <button>
+            <span
+              className={
+                isArchived ? `material-icons` : "material-icons-outlined"
+              }
+              onClick={handleArchive}
+            >
+              archive
+            </span>
+          </button>
+        )}
       </div>
     </div>
   );

@@ -14,6 +14,12 @@ const NotesReducerFunction = (state , action)=>{
             return {...state , notes: state.notes.map(note=> note.id === payload ? {...note , isArchived: !note.isArchived} : note) }
         case 'AddToBin':
             return {...state , deletedNotes:[...state.deletedNotes , state.notes.find((note)=>note.id === payload)] , notes: state.notes.filter(note=> note.id !== payload)};
+        case 'RemoveFromBin': 
+            return {...state , deletedNotes: state.deletedNotes.filter(note=> note.id !== payload)};
+        case 'Restore' : 
+            return {...state , 
+                notes: [...state.notes ,  state.deletedNotes.find(note=> note.id === payload )] , 
+                deletedNotes: state.deletedNotes.filter(note=> note.id !== payload)}
     }
 
 
