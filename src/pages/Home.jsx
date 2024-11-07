@@ -30,6 +30,7 @@ const Home = () => {
                 <Note
                   key={note.id}
                   {...note}
+                  pageType={'home'}
                 />
               );
             })}
@@ -47,6 +48,7 @@ const Home = () => {
                 <Note
                   key={note.id}
                   {...note}
+                  pageType={'home'}
                 />
               );
             })}
