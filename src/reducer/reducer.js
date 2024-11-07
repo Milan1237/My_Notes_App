@@ -7,7 +7,9 @@ const NotesReducerFunction = (state , action)=>{
         case 'TEXT':
             return {...state , text: payload} ;
         case 'AddNotes': 
-            return {...state , notes: [...state.notes , {id: uuid() , title: payload.title , text: payload.text , isPinned: false , isArchived: false}] , title: '' , text: ''};
+            return {...state , notes: [...state.notes , {id: uuid() , title: payload.title , text: payload.text , isPinned: false , isArchived: false , isImportant: false}] };
+        case 'AddImportantNotes': 
+            return {...state , notes: [...state.notes , {id: uuid() , title: payload.title , text: payload.text , isPinned: false , isArchived: false , isImportant: true}] };
         case 'SetPin': 
             return {...state , notes: state.notes.map(note=> note.id === payload ? {...note , isPinned: !note.isPinned} : note)};
         case 'SetArchive':
@@ -20,6 +22,10 @@ const NotesReducerFunction = (state , action)=>{
             return {...state , 
                 notes: [...state.notes ,  state.deletedNotes.find(note=> note.id === payload )] , 
                 deletedNotes: state.deletedNotes.filter(note=> note.id !== payload)}
+        case 'PrevNote': 
+                return {...state , notes: payload};
+        case 'PrevNoteDeleted': 
+                return {...state , deletedNotes: payload};
     }
 
 

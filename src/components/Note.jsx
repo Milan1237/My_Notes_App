@@ -32,7 +32,7 @@ const Note = ({ title, isPinned, id, text, pageType, isArchived }) => {
         <h1 className=" text-xl text-left">
           {title.length > 20 ? title.substring(0, 20) + "..." : title}
         </h1>
-        {pageType === "home" && (
+        {(pageType === "home" || pageType ==='important') && (
           <button onClick={setPin}>
             <span
               className={

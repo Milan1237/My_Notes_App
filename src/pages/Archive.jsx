@@ -1,8 +1,20 @@
 import React from 'react'
 import {useNotes} from '../context/Context'
 import Note from '../components/Note';
+import { useEffect } from "react";
 const Archive = () => {
-  const {notes } = useNotes(); 
+  const {notes , dispatch } = useNotes(); 
+  useEffect(() => {
+    if (notes.length > 0) {
+      localStorage.setItem("notes", JSON.stringify(notes));
+    }
+  }, [notes]);
+  useEffect(() => {
+    let prevNote = localStorage.getItem("notes");
+    prevNote = prevNote ? JSON.parse(prevNote) : [];
+    console.log(prevNote);
+    dispatch({ type: "PrevNote", payload: prevNote });
+  }, []);
   const archiveNotes = notes.filter(note=> note.isArchived);
   return (
     <div className='ml-4 mt-4'>

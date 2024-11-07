@@ -1,20 +1,38 @@
 import React, { useRef } from "react";
 import { memo } from "react";
-const Input = ({ dispatch }) => {
+const Input = ({ dispatch , pageType }) => {
   const title = useRef("");
   const text = useRef("");
 
   function handleSubmit(e) {
     e.preventDefault();
-    (text.current.value.length > 0 &&
-      title.current.value.length > 0) &&
-      dispatch({
-        type: "AddNotes",
-        payload: { title: title.current.value, text: text.current.value },
-      });
+    if(text.current.value.length > 0 &&
+      title.current.value.length > 0) {
+
+      
+      switch(pageType){
+        case 'home': 
+        dispatch({
+            type: "AddNotes",
+            payload: { title: title.current.value, text: text.current.value },
+          })
+          break ; 
+        case 'important':
+          dispatch({
+            type: "AddImportantNotes",
+            payload: { title: title.current.value, text: text.current.value },
+          })
+          break ; 
+      }
+
+      // dispatch({
+      //   type: "AddNotes",
+      //   payload: { title: title.current.value, text: text.current.value },
+      // });
 
       title.current.value = '';
       text.current.value = '';
+    }
   }
 
   return (

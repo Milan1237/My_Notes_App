@@ -5,16 +5,16 @@ const initialValue = {
     title: '',
     text: '' ,
     notes: [],
-    deletedNotes: []
+    deletedNotes: [],
 }
 const context = createContext(initialValue);
 
 //create a component which will provide all the value
 
 export const ContextComponent = ({children})=>{
-    const [{title , text , notes , deletedNotes} , dispatch] = useReducer(NotesReducerFunction , initialValue);
+    const [{title , text , notes , deletedNotes } , dispatch] = useReducer(NotesReducerFunction , initialValue);
     return(
-        <context.Provider  value={{title , text , notes , deletedNotes, dispatch}}>
+        <context.Provider  value={{title , text , notes , deletedNotes,  dispatch}}>
             {children}
         </context.Provider>
     )
