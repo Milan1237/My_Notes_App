@@ -7,7 +7,7 @@ const NotesReducerFunction = (state , action)=>{
         case 'TEXT':
             return {...state , text: payload} ;
         case 'AddNotes': 
-            return {...state , notes: [...state.notes , {id: uuid() , title: state.title , text: state.text , isPinned: false , isArchived: false}] , title: '' , text: ''};
+            return {...state , notes: [...state.notes , {id: uuid() , title: payload.title , text: payload.text , isPinned: false , isArchived: false}] , title: '' , text: ''};
         case 'SetPin': 
             return {...state , notes: state.notes.map(note=> note.id === payload ? {...note , isPinned: !note.isPinned} : note)};
         case 'SetArchive':
