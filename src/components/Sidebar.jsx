@@ -11,10 +11,15 @@ const Sidebar = () => {
         <span className="material-icons-outlined">archive</span>
         <p>Archive</p>
       </NavLink>
+      <NavLink to={'/important'} className={({ isActive }) =>`${isActive ? 'bg-[#15803d] rounded-tr-xl rounded-br-xl' : ''} p-[10px] flex gap-4 min-w-[200px] hover:bg-[#15803d] rounded-tr-xl rounded-br-xl`}>
+        <span className="material-icons-outlined">label_important</span>
+        <p>Important Notes</p>
+      </NavLink>
       <NavLink to={'/bin'} className={({ isActive }) =>`${isActive ? 'bg-[#15803d] rounded-tr-xl rounded-br-xl' : ''} p-[10px] flex gap-4 min-w-[200px] hover:bg-[#15803d] rounded-tr-xl rounded-br-xl`}>
         <span className="material-icons-outlined">delete</span>
         <p>Bin</p>
       </NavLink>
+      
     </aside>
   );
 };

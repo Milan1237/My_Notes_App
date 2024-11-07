@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Archive from "./pages/Archive.jsx";
 import Bin from "./pages/Bin.jsx";
+import ImportantNotes from "./pages/ImportantNotes.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: '/bin',
         element: <Bin />
+      },
+      {
+        path: '/important',
+        element: <ImportantNotes />
       }
     ],
   },
