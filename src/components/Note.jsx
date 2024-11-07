@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from "react";
 import { useNotes } from "../context/Context";
 
-const Note = ({ title, isPinned, id, text, pageType }) => {
+const Note = ({ title, isPinned, id, text, pageType , isArchived }) => {
   const { dispatch } = useNotes();
   const setPin = useCallback(
     () => dispatch({ type: "SetPin", payload: id }),
@@ -47,7 +47,7 @@ const Note = ({ title, isPinned, id, text, pageType }) => {
           </span>
         </button>
         <button>
-          <span className="material-icons-outlined" onClick={handleArchive}>
+          <span className={isArchived ? `material-icons` : 'material-icons-outlined' } onClick={handleArchive}>
             archive
           </span>
         </button>
